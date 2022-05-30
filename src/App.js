@@ -1,8 +1,12 @@
-import Categories from "./components/categories/categories.component";
+import { Route, Routes } from "react-router-dom";
+import Home from "./routes/home/home.component";
 
 const App = () => {
   return (
-     <Categories/>
+    <Routes>
+        <Route path="/" element = {<Home/>} />
+
+    </Routes>
   );
 };
 

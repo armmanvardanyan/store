@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword, createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
+import FormInput from "../form-input/FormInput.component";
 
 const defaultFormFields = {
   displayName: "",
@@ -48,45 +49,51 @@ const SignUpForm = () => {
   return (
     <div>
       <h1>Signup with your email and password</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Display Name</label>
-        <input
-          onChange={handleChange}
-          type="text"
-          name="displayName"
-          value={displayName}
-          placeholder="Name"
-          required
+      <form onSubmit={handleSubmit}  >
+        <FormInput 
+            label = "Display Name"
+            inputOptions = {{
+                onChange: handleChange,
+                type: "text",
+                name: "displayName",
+                value: displayName,
+                required: true,
+            }}
         />
         <br />
-        <label>Email</label>
-        <input
-          onChange={handleChange}
-          type="email"
-          name="email"
-          value={email}
-          placeholder="Email"
-          required
+        <FormInput
+          label = "Email"
+          inputOptions = {{
+            onChange: handleChange,
+            type: "email",
+            name: "Email",
+            value: email,
+            required: true,
+        }}
         />
         <br />
-        <label>Password</label>
-        <input
-          onChange={handleChange}
-          type="password"
-          name="password"
-          value={password}
-          placeholder="Password"
-          required
+        <FormInput
+          label = "Password"
+          inputOptions = {{
+            onChange: handleChange,
+            type: "password",
+            name: "password",
+            value: password,
+            required: true,
+            autoComplete : "new-password"
+        }}
         />
         <br />
-        <label>Confirm Password</label>
-        <input
-          onChange={handleChange}
-          type="password"
-          name="confirmPassword"
-          value={confirmPassword}
-          placeholder="Confirm Password"
-          required
+        <FormInput
+          label = "Confirm Password"
+          inputOptions = {{
+            onChange: handleChange,
+            type: "password",
+            name: "confirmPassword",
+            value: confirmPassword,
+            required: true,
+            autoComplete : "new-password"
+        }}
         />
         <br />
         <button type="submit">Submit</button>

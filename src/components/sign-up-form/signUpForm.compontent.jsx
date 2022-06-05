@@ -70,7 +70,7 @@ const SignUpForm = () => {
           inputOptions = {{
             onChange: handleChange,
             type: "email",
-            name: "Email",
+            name: "email",
             value: email,
             required: true,
         }}

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import {
+  createAuthUserWithEmailAndPassword, createUserDocumentFromAuth,
+} from "../../utils/firebase/firebase.utils";
 
 const defaultFormFields = {
   displayName: "",
@@ -11,19 +14,41 @@ const SignUpForm = () => {
   const [formFields, setForm] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
+  const resetForm = () => setForm(defaultFormFields);
+
   const handleChange = (event) => {
-    const {name,value} = event.target;
+    const { name, value } = event.target;
     setForm({
       ...formFields,
       [name]: value,
     });
+  };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+    try {
+      const {user} = await createAuthUserWithEmailAndPassword(email,password);
+
+      await createUserDocumentFromAuth(user, {displayName} ); // creating same user in Fiestore with displayName
+
+      console.log(user);
+
+      resetForm();
+
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
     <div>
       <h1>Signup with your email and password</h1>
-      <form onSubmit={() => {}}>
+      <form onSubmit={handleSubmit}>
         <label>Display Name</label>
         <input
           onChange={handleChange}

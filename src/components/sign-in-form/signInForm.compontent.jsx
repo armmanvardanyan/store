@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/user.context";
+
 import {
   createUserDocumentFromAuth,signInUserWithEmailAndPassword,signInWithGooglePopup
 } from "../../utils/firebase/firebase.utils";
@@ -15,6 +17,8 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setForm] = useState(defaultFormFields);
   const { email, password } = formFields;
+
+  const {currentUser,setCurrentUser} = useContext(UserContext)
 
   const resetForm = () => setForm(defaultFormFields);
 

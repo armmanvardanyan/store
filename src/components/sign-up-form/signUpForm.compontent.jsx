@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/user.context";
 import {
   createAuthUserWithEmailAndPassword, createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
@@ -18,6 +19,10 @@ const defaultFormFields = {
 const SignUpForm = () => {
   const [formFields, setForm] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+
+  const {currentUser,setCurrentUser} = useContext(UserContext);
+
+  console.log('hit');
 
   const resetForm = () => setForm(defaultFormFields);
 
@@ -43,6 +48,8 @@ const SignUpForm = () => {
 
       console.log(user);
 
+      setCurrentUser(user.accessToken)
+
       resetForm();
 
     } catch (error) {
@@ -53,6 +60,7 @@ const SignUpForm = () => {
   return (
     <div className="sign-up-container">
       <h2 className="">Dont have an account ? </h2>
+      {currentUser}
       <form onSubmit={handleSubmit}  >
         <FormInput 
             label = "Display Name"

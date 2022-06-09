@@ -5,8 +5,7 @@ import { useEffect } from "react";
 import Button from "../../components/button/button.component";
 import SignInForm from "../../components/sign-in-form/signInForm.compontent";
 import SignUpForm from "../../components/sign-up-form/signUpForm.compontent";
-import { auth, createUserDocumentFromAuth, signInWithGooglePopup, signInWithGoogleRedirect } from "../../utils/firebase/firebase.utils";
-
+import './authentication.styles.scss'
 const Authentication = () => {
     
     /*useEffect(() => {
@@ -20,7 +19,7 @@ const Authentication = () => {
     },[]);*/
 
     return (
-        <div>
+        <div className="authentication-container">
             <SignInForm/>
             <SignUpForm/>
            {/**  

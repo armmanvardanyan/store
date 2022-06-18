@@ -30,13 +30,14 @@ export const CartProvider = ({children}) => {
 
     const [isCartOpen,setIsCartOpen] = useState(false)
     const [cartItems,setCartItems] = useState([])
-
-  
     
     const addItemToCart = (productToAdd) => {
         setCartItems(addCartItem(cartItems,productToAdd))
     }
-    const value = {isCartOpen,setIsCartOpen,addItemToCart,cartItems }
+
+    const cartItemsCount = cartItems.reduce((acc,curr) => acc + curr.quantity , 0  )
+
+    const value = { isCartOpen,setIsCartOpen,addItemToCart,cartItems,cartItemsCount }
 
     return (
         <CartContext.Provider value={value}>

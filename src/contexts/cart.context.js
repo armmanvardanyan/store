@@ -6,14 +6,11 @@ const addCartItem = (cartItems,productToAdd) => {
     let existingProductIdx = cartItems.findIndex(cartitem => cartitem.id === productToAdd.id);
 
     if(existingProductIdx !== -1) {
-
         return cartItems.map(cartItem => cartItem.id === productToAdd.id  ? 
             {...cartItem, quantity: cartItem.quantity + 1} : 
             cartItem)
     }  
-    else {
-        return [...cartItems,{...productToAdd, quantity: 1}]
-    }
+    return [...cartItems,{...productToAdd, quantity: 1}]
    
 }
 
